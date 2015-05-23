@@ -118,7 +118,14 @@ writeTidyData <- function(fileName, subjectData, featureData, activityData) {
 }
 
 writeAverageByActivityAndSubject <- function(fileName, subjectData, featureData, activityData) {
-    message("ham");
+    message("Writing average data grouped by activity and subject to '", fileName, "'.");
+    averageFeatureColNames = lapply(colnames(featureData),
+        function(name) { paste("Average", name); });
+    averageData = aggregate(featureData,
+        list(subject_id=subjectData[["subject_id"]], activity=activityData[["activity_name"]]),
+        mean);
+    colnames(averageData) = c(colnames(averageData)[1:2], averageFeatureColNames);
+    write.csv(averageData, file=fileName);
 }
 
 

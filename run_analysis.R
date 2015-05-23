@@ -1,88 +1,125 @@
+library(data.table)
+
+buildTidyData <- function () {
+    downloadZip();
+    dataDir = decompressZip();
+    featureData = readFeatureData(dataDir);
+    featureData = labelFeatureData(dataDir, featureData);
+    featureData = trimFeatureData(featureData);
+    activityData = readActivityData(dataDir);
+    activityData = labelActivityData(dataDir, activityData);
+    subjectData = readSubjectData(dataDir);
+    subjectData = labelSubjectData(subjectData);
+
+    writeTidyData("fitnessData.csv", subjectData, featureData, activityData);
+    writeAverageByActivityAndSubject(
+        "fitnessDataAverageByActivityAndSubject.csv", subjectData, featureData, activityData);
+}
+
 ##
 # Check if the file exists and download it if necessary.
 ##
-
-fileName = "UCI_HAR_Dataset.zip";
-fileUrl = "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip";
-message("Looking for \'", fileName, "\'.");
-if (file.exists(fileName) == FALSE) {
-    message(" ... Downloading");
-    download.file(fileUrl, fileName, method="curl");
-} else {
-    message(" ... File found.");
+downloadZip <- function () {
+    fileName = "UCI_HAR_Dataset.zip";
+    fileUrl = "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip";
+    message("Looking for \'", fileName, "\'.");
+    if (file.exists(fileName) == FALSE) {
+        message(" ... Downloading");
+        download.file(fileUrl, fileName, method="curl");
+    } else {
+          message(" ... File found.");
+    }
 }
 
 ##
 # Decompress the data.
 ##
-dataDir = "UCI HAR Dataset";
-message("Looking for extracted data in '", dataDir, "'.");
-if (dir.exists(dataDir) == FALSE) {
-    message(" ... extracting data in ", dataDir);
-    unzip(fileName, overwrite=TRUE);
-} else {
-    message(" ... Data found.");
+decompressZip <- function () {
+    dataDir = "UCI HAR Dataset";
+    message("Looking for extracted data in '", dataDir, "'.");
+    if (dir.exists(dataDir) == FALSE) {
+        message(" ... extracting data in ", dataDir);
+        unzip(fileName, overwrite=TRUE);
+    } else {
+          message(" ... Data found.");
+    }
+    dataDir
 }
-
-##
-# Extract the column names to use for the data.
-#
-featureNamesFile = paste(dataDir, "features.txt", sep="/");
-featureNamesData = read.table(featureNamesFile);
-featureNames = featureNamesData[[2]];
-featureNamesMask = grepl("-mean\\(\\)|-std\\(\\)", featureNames);
 
 ##
 # Read a table of data from {fileName} where each column is labled
 # by {featureNames}, and keep only the columns with true values in
 # the logical vector {featureMask}.
 ##
-readFeatureData <- function(fileName) {
-    featureData = read.table(fileName, col.names=featureNames);
-    featureData = featureData[, featureNamesMask];
+readFeatureData <- function(dataDir) {
+    message("Reading feature data...");
+    trainFeatureData = read.table(paste(dataDir, "train", "X_train.txt", sep="/"));
+    testFeatureData = read.table(paste(dataDir, "test", "X_test.txt", sep="/"));
+    rbind(trainFeatureData, testFeatureData)
 }
 
+labelFeatureData <- function(dataDir, featureData) {
+    message("Labeling feature data...");
+    featureNamesFile = paste(dataDir, "features.txt", sep="/");
+    featureNamesData = read.table(featureNamesFile);
+    featureNames = featureNamesData[[2]];
+    colnames(featureData) = featureNames;
+    featureData
+}
 
-activityLabelsFile = paste(dataDir, "activity_labels.txt", sep="/");
-activityLabels = read.table(activityLabelsFile)[[2]]
+trimFeatureData <- function(featureData) {
+    message("Trimming feature data columns...");
+    featureNamesMask = grepl("-mean\\(\\)|-std\\(\\)", colnames(featureData));
+    featureData[, featureNamesMask];
+}
 
 ##
 # Read a table of activity data from {fileName} and convert
 # the column to a descriptive name.
 ##
-readActivityData <- function(fileName) {
-    activityCodes = read.table(fileName);
-    activityNames = lapply(activityCodes, function (x) { activityLabels[x]; });
-    activityData = cbind(activityCodes, activityNames);
-    colnames(activityData) = c("activity_code", "activity_name");
+readActivityData <- function(dataDir) {
+    message("Reading activity data...");
+    trainActivityData = read.table(paste(dataDir, "train", "y_train.txt", sep="/"));
+    testActivityData = read.table(paste(dataDir, "test", "y_test.txt", sep="/"));
+    rbind(trainActivityData, testActivityData)
+}
+
+labelActivityData <- function(dataDir, activityData) {
+    message("Labeling activity data...");
+    activityLabelsFile = paste(dataDir, "activity_labels.txt", sep="/");
+    activityLabels = read.table(activityLabelsFile)[[2]]
+
+    activityNames = lapply(activityData, function (x) { activityLabels[x]; });
+    activityData = cbind(activityData, activityNames);
+    colnames(activityData) = c("activity", "activity_name");
     activityData
 }
+
 
 ##
 # Read a table of subject ID data from {filename}.
 ##
-readSubjectIdData <- function(fileName) {
-    read.table(fileName, col.names=c("subject_id"));
+readSubjectData <- function(dataDir) {
+    message("Reading subject data...");
+    trainSubjectIdData = read.table(paste(dataDir, "train", "subject_train.txt", sep="/"));
+    testSubjectIdData = read.table(paste(dataDir, "test", "subject_test.txt", sep="/"));
+    rbind(trainSubjectIdData, testSubjectIdData);
+}
+
+labelSubjectData <- function(subjectData) {
+    message("Labeling subject data...");
+    colnames(subjectData) = c("subject_id");
+    subjectData
+}
+
+writeTidyData <- function(fileName, subjectData, featureData, activityData) {
+    message("Writing tidy data to '", fileName, "'.");
+    write.csv(cbind(subjectData, featureData, activityData), file=fileName);
+}
+
+writeAverageByActivityAndSubject <- function(fileName, subjectData, featureData, activityData) {
+    message("ham");
 }
 
 
-# Load the feature data.
-message("Loading feature data...");
-trainFeatureData = readFeatureData(paste(dataDir, "train", "X_train.txt", sep="/"));
-testFeatureData = readFeatureData(paste(dataDir, "test", "X_test.txt", sep="/"));
-# Merge test and train data together.
-featureData = rbind(trainFeatureData, testFeatureData);
-
-# Load the activity data.
-message("Loading activity data...");
-trainActivityData = readActivityData(paste(dataDir, "train", "y_train.txt", sep="/"));
-testActivityData = readActivityData(paste(dataDir, "test", "y_test.txt", sep="/"));
-# Merge test and train data together.
-activityData = rbind(trainActivityData, testActivityData);
-
-# Load the subjectId data.
-message("Loading subject id data...");
-trainSubjectIdData = readSubjectIdData(paste(dataDir, "train", "subject_train.txt", sep="/"));
-testSubjectIdData = readSubjectIdData(paste(dataDir, "test", "subject_test.txt", sep="/"));
-# Merge test and train data together.
-subjectIdData = rbind(trainSubjectIdData, testSubjectIdData);
+buildTidyData()

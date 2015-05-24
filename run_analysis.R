@@ -1,8 +1,9 @@
-library(data.table)
-
+##
+# The main body that eventually produces the tidy output data.
+##
 buildTidyData <- function () {
-    downloadZip();
-    dataDir = decompressZip();
+    fileName = downloadZip();
+    dataDir = decompressZip(fileName);
     featureData = readFeatureData(dataDir);
     featureData = labelFeatureData(dataDir, featureData);
     featureData = trimFeatureData(featureData);
@@ -11,9 +12,9 @@ buildTidyData <- function () {
     subjectData = readSubjectData(dataDir);
     subjectData = labelSubjectData(subjectData);
 
-    writeTidyData("fitnessData.csv", subjectData, featureData, activityData);
+    writeTidyData("fitnessData.txt", subjectData, featureData, activityData);
     writeAverageByActivityAndSubject(
-        "fitnessDataAverageByActivityAndSubject.csv", subjectData, featureData, activityData);
+        "fitnessDataAverageByActivityAndSubject.txt", subjectData, featureData, activityData);
 }
 
 ##
@@ -29,12 +30,13 @@ downloadZip <- function () {
     } else {
           message(" ... File found.");
     }
+    fileName
 }
 
 ##
 # Decompress the data.
 ##
-decompressZip <- function () {
+decompressZip <- function (fileName) {
     dataDir = "UCI HAR Dataset";
     message("Looking for extracted data in '", dataDir, "'.");
     if (dir.exists(dataDir) == FALSE) {
@@ -91,7 +93,7 @@ labelActivityData <- function(dataDir, activityData) {
 
     activityNames = lapply(activityData, function (x) { activityLabels[x]; });
     activityData = cbind(activityData, activityNames);
-    colnames(activityData) = c("activity", "activity_name");
+    colnames(activityData) = c("activity", "activity_label");
     activityData
 }
 
@@ -114,18 +116,21 @@ labelSubjectData <- function(subjectData) {
 
 writeTidyData <- function(fileName, subjectData, featureData, activityData) {
     message("Writing tidy data to '", fileName, "'.");
-    write.csv(cbind(subjectData, featureData, activityData), file=fileName);
+    write.table(cbind(subjectData, featureData, activityData),
+                file=fileName, row.name=FALSE);
 }
 
 writeAverageByActivityAndSubject <- function(fileName, subjectData, featureData, activityData) {
     message("Writing average data grouped by activity and subject to '", fileName, "'.");
     averageFeatureColNames = lapply(colnames(featureData),
-        function(name) { paste("Average", name); });
-    averageData = aggregate(featureData,
-        list(subject_id=subjectData[["subject_id"]], activity=activityData[["activity_name"]]),
+        function(name) { paste("average_", name); });
+    averageData = aggregate(
+        featureData,
+        list(subject_id=subjectData[["subject_id"]],
+             activity_label=activityData[["activity_label"]]),
         mean);
     colnames(averageData) = c(colnames(averageData)[1:2], averageFeatureColNames);
-    write.csv(averageData, file=fileName);
+    write.table(averageData, file=fileName, row.name=FALSE);
 }
 
 

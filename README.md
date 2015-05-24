@@ -52,14 +52,11 @@ The full description of the columns and their units can be found in `CodeBook.md
 ## Running the Script
 
 1. First start R.
-
 ```
 $ R
 >
 ```
-
 2. Source the provided script, which will produce an output like the following:
-
 ```
 > source("run_analysis.R")
 Looking for 'UCI_HAR_Dataset.zip'.
@@ -77,5 +74,4 @@ Writing tidy data to 'fitnessData.txt.
 Writing average data grouped by activity and subject to 'fitnessDataAverageByActivityAndSubject.txt.
 >
 ```
-
 3. The data is ready to eat in 'fitnessData.txt and 'fitnessDataAverageByActivityAndSubject.txt.

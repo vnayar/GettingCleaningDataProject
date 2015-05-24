@@ -141,201 +141,201 @@
     activity.
   - Unit: (normalized) Radians per second per second.
   - Space: Real numbers -1.0 and +1.0.
-21. `tBodyGyroJerk-std()-X`
+29. `tBodyGyroJerk-std()-X`
   - Meaning: Time domain standard deviation of the angular acceleration of the body around the X
     axis during an activity.
   - Unit: (normalized) Radians per second per second.
   - Space: Real numbers -1.0 and +1.0.
-22. `tBodyGyroJerk-std()-Y`
+30. `tBodyGyroJerk-std()-Y`
   - Meaning: Time domain standard deviation of the angular acceleration of the body around the Y
     axis during an activity.
   - Unit: (normalized) Radians per second per second.
   - Space: Real numbers -1.0 and +1.0.
-23. `tBodyGyroJerk-std()-Z`
+31. `tBodyGyroJerk-std()-Z`
   - Meaning: Time domain standard deviation of the angular acceleration of the body around the Z
     axis during an activity.
   - Unit: (normalized) Radians per second per second.
   - Space: Real numbers -1.0 and +1.0.
-24. `tBodyAccMag-mean()`
+32. `tBodyAccMag-mean()`
   - Meaning: Time domain average of the magnitude of highpass filtered acceleration (independent of
     direction) during an activity.
   - Unit: (normalized) standard gravity unit 'g'.
   - Space: Real numbers -1.0 and +1.0.
-25. `tBodyAccMag-std()`
+33. `tBodyAccMag-std()`
   - Meaning: Time domain standard deviation of the magnitude of highpass filtered acceleration
     (independent of direction) during an activity.
   - Unit: (normalized) standard gravity unit 'g'.
   - Space: Real numbers -1.0 and +1.0.
-26. `tGravityAccMag-mean()`
+34. `tGravityAccMag-mean()`
   - Meaning: Time domain average of the magnitude of lowpass filtered acceleration (independent of
     direction) during an activity.
   - Unit: (normalized) standard gravity unit 'g'.
   - Space: Real numbers -1.0 and +1.0.
-27. `tGravityAccMag-std()`
+35. `tGravityAccMag-std()`
   - Meaning: Time domain standard deviation of the magnitude of lowpass filtered acceleration
     (independent of direction) during an activity.
   - Unit: (normalized) standard gravity unit 'g'.
   - Space: Real numbers -1.0 and +1.0.
-28. `tBodyAccJerkMag-mean()`
+36. `tBodyAccJerkMag-mean()`
   - Meaning: Time domain average of the derivative, or 'jerk', of the magnitude of highpass filtered
     acceleration (independent of direction) during an activity.
   - Unit: (normalized) standard gravity unit 'g' per second.
   - Space: Real numbers -1.0 and +1.0.
-29. `tBodyAccJerkMag-std()`
+37. `tBodyAccJerkMag-std()`
   - Meaning: Time domain standard deviation of the derivative, or 'jerk', of the magnitude of
     highpass filtered acceleration (independent of direction) during an activity.
   - Unit: (normalized) standard gravity unit 'g' per second.
   - Space: Real numbers -1.0 and +1.0.
-30. `tBodyGyroMag-mean()`
+38. `tBodyGyroMag-mean()`
   - Meaning: Time domain average magnitude of the angular velocity of the body during an activity.
   - Unit: (normalized) Radians per second.
   - Space: Real numbers -1.0 and +1.0.
-31. `tBodyGyroMag-std()`
+39. `tBodyGyroMag-std()`
   - Meaning: Time domain standard deviation of the magnitude of highpass filtered the angular
     velocity during an activity.
   - Unit: (normalized) Radians per second.
   - Space: Real numbers -1.0 and +1.0.
-32. `tBodyGyroJerkMag-mean()`
+40. `tBodyGyroJerkMag-mean()`
   - Meaning: Time domain average magnitude of the highpass filtered angular acceleration during an
     activity.
   - Unit: (normalized) Radians per second per second.
   - Space: Real numbers -1.0 and +1.0.
-33. `tBodyGyroJerkMag-std()`
+41. `tBodyGyroJerkMag-std()`
   - Meaning: Time domain standard deviation of the magnitude of the highpass filtered angular
     acceleration during an activity.
   - Unit: (normalized) Radians per second per second.
   - Space: Real numbers -1.0 and +1.0.
-34. `fBodyAcc-mean()-X`
+42. `fBodyAcc-mean()-X`
   - Meaning: Frequency domain average of the highpass filtered acceleration along the X axis during
     an activity.
   - Unit: (normalized) standard gravity unit 'g'
   - Space: Real numbers -1.0 and +1.0.
-35. `fBodyAcc-mean()-Y`
+43. `fBodyAcc-mean()-Y`
   - Meaning: Frequency domain average of the highpass filtered acceleration along the Y axis during
     an activity.
   - Unit: (normalized) standard gravity unit 'g'
   - Space: Real numbers -1.0 and +1.0.
-36. `fBodyAcc-mean()-Z`
+44. `fBodyAcc-mean()-Z`
   - Meaning: Frequency domain average of the highpass filtered acceleration along the Z axis during
     an activity.
   - Unit: (normalized) standard gravity unit 'g'
   - Space: Real numbers -1.0 and +1.0.
-37. `fBodyAcc-std()-X`
+45. `fBodyAcc-std()-X`
   - Meaning: Frequency domain standard deviation of the highpass filtered acceleration along the X
     axis during an activity.
   - Unit: (normalized) standard gravity unit 'g'
   - Space: Real numbers -1.0 and +1.0.
-38. `fBodyAcc-std()-Y`
+46. `fBodyAcc-std()-Y`
   - Meaning: Frequency domain standard deviation of the highpass filtered acceleration along the Y
     axis during an activity.
   - Unit: (normalized) standard gravity unit 'g'
   - Space: Real numbers -1.0 and +1.0.
-39. `fBodyAcc-std()-Z`
+47. `fBodyAcc-std()-Z`
   - Meaning: Frequency domain standard deviation of the highpass filtered acceleration along the Z
     axis during an activity.
   - Unit: (normalized) standard gravity unit 'g'
   - Space: Real numbers -1.0 and +1.0.
-40. `fBodyAccJerk-mean()-X`
+48. `fBodyAccJerk-mean()-X`
   - Meaning: Frequency domain average of the highpass filtered derivative of acceleration along the
     X axis during an activity.
   - Unit: (normalized) standard gravity unit 'g'
   - Space: Real numbers -1.0 and +1.0.
-41. `fBodyAccJerk-mean()-Y`
+49. `fBodyAccJerk-mean()-Y`
   - Meaning: Frequency domain average of the highpass filtered derivative of acceleration along the
     Y axis during an activity.
   - Unit: (normalized) standard gravity unit 'g'
   - Space: Real numbers -1.0 and +1.0.
-42. `fBodyAccJerk-mean()-Z`
+50. `fBodyAccJerk-mean()-Z`
   - Meaning: Frequency domain average of the highpass filtered derivative of acceleration along the
     Z axis during an activity.
   - Unit: (normalized) standard gravity unit 'g'
   - Space: Real numbers -1.0 and +1.0.
-43. `fBodyAccJerk-std()-X`
+51. `fBodyAccJerk-std()-X`
   - Meaning: Frequency domain standard deviation of the highpass filtered derivative of acceleration
     along the X axis during an activity.
   - Unit: (normalized) standard gravity unit 'g'
   - Space: Real numbers -1.0 and +1.0.
-44. `fBodyAccJerk-std()-Y`
+52. `fBodyAccJerk-std()-Y`
   - Meaning: Frequency domain standard deviation of the highpass filtered derivative of acceleration
     along the X axis during an activity.
   - Unit: (normalized) standard gravity unit 'g'
   - Space: Real numbers -1.0 and +1.0.
-45. `fBodyAccJerk-std()-Z`
+53. `fBodyAccJerk-std()-Z`
   - Meaning: Frequency domain standard deviation of the highpass filtered derivative of acceleration
     along the X axis during an activity.
   - Unit: (normalized) standard gravity unit 'g'
   - Space: Real numbers -1.0 and +1.0.
-46. `fBodyGyro-mean()-X`
+54. `fBodyGyro-mean()-X`
   - Meaning: Frequency domain average of the angular velocity of the body around the Z axis during
     an activity.
   - Unit: (normalized) Radians per second.
   - Space: Real numbers -1.0 and +1.0.
-47. `fBodyGyro-mean()-Y`
+55. `fBodyGyro-mean()-Y`
   - Meaning: Frequency domain average of the angular velocity of the body around the Z axis during
     an activity.
   - Unit: (normalized) Radians per second.
   - Space: Real numbers -1.0 and +1.0.
-48. `fBodyGyro-mean()-Z`
+56. `fBodyGyro-mean()-Z`
   - Meaning: Frequency domain average of the angular velocity of the body around the Z axis during
     an activity.
   - Unit: (normalized) Radians per second.
   - Space: Real numbers -1.0 and +1.0.
-49. `fBodyGyro-std()-X`
+57. `fBodyGyro-std()-X`
   - Meaning: Frequency domain standard deviation of the angular velocity of the body around the X
     axis during an activity.
   - Unit: (normalized) Radians per second.
   - Space: Real numbers -1.0 and +1.0.
-50. `fBodyGyro-std()-Y`
+58. `fBodyGyro-std()-Y`
   - Meaning: Frequency domain standard deviation of the angular velocity of the body around the Y
     axis during an activity.
   - Unit: (normalized) Radians per second.
   - Space: Real numbers -1.0 and +1.0.
-51. `fBodyGyro-std()-Z`
+59. `fBodyGyro-std()-Z`
   - Meaning: Frequency domain standard deviation of the angular velocity of the body around the Z
     axis during an activity.
   - Unit: (normalized) Radians per second.
   - Space: Real numbers -1.0 and +1.0.
-52. `fBodyAccMag-mean()`
+60. `fBodyAccMag-mean()`
   - Meaning: Frequency domain average of the highpass filtered acceleration magnitude during an
     activity.
   - Unit: (normalized) standard gravity unit 'g'
   - Space: Real numbers -1.0 and +1.0.
-53. `fBodyAccMag-std()`
+61. `fBodyAccMag-std()`
   - Meaning: Frequency domain standard deviation of the highpass filtered acceleration magnitude
     during an activity.
   - Unit: (normalized) standard gravity unit 'g'
   - Space: Real numbers -1.0 and +1.0.
-54. `fBodyBodyAccJerkMag-mean()`
+62. `fBodyBodyAccJerkMag-mean()`
   - Meaning: Frequency domain average of the highpass filtered derivative of acceleration magnitude
     during an activity.
   - Unit: (normalized) standard gravity unit 'g'
   - Space: Real numbers -1.0 and +1.0.
-55. `fBodyBodyAccJerkMag-std()`
+63. `fBodyBodyAccJerkMag-std()`
   - Meaning: Frequency domain standard deviation of the highpass filtered derivative of acceleration
     magnitude during an activity.
   - Unit: (normalized) standard gravity unit 'g'
   - Space: Real numbers -1.0 and +1.0.
-56. `fBodyBodyGyroMag-mean()`
+64. `fBodyBodyGyroMag-mean()`
   - Meaning: Frequency domain average of the highpass filtered angular velocity magnitude during an
     activity.
   - Unit: (normalized) Radians per second.
   - Space: Real numbers -1.0 and +1.0.
-57. `fBodyBodyGyroMag-std()`
+65. `fBodyBodyGyroMag-std()`
   - Meaning: Frequency domain standard deviation of the highpass filtered angular velocity magnitude
     during an activity.
   - Unit: (normalized) Radians per second.
   - Space: Real numbers -1.0 and +1.0.
-58. `fBodyBodyGyroJerkMag-mean()`
+66. `fBodyBodyGyroJerkMag-mean()`
   - Meaning: Frequency domain average of the highpass filtered angular acceleration magnitude during an
     activity.
   - Unit: (normalized) Radians per second per second.
   - Space: Real numbers -1.0 and +1.0.
-59. `fBodyBodyGyroJerkMag-std()`
+67. `fBodyBodyGyroJerkMag-std()`
   - Meaning: Frequency domain average of the highpass filtered angular acceleration magnitude during an
     activity.
   - Unit: (normalized) Radians per second per second.
   - Space: Real numbers -1.0 and +1.0.
-60. `activity`
+68. `activity`
   - Meaning: An identifier number for the kind of activity being performed.
   - Unit: An integer that encodes an activity type
     - 1: WALKING
@@ -345,8 +345,17 @@
     - 5: STANDING
     - 6: LAYING
   - Space: An integer from 1 to 6.
-61. `activity_label`
+69. `activity_label`
   - Meaning: A string representation of the activity encoded in `activity`.
   - Unit: String
   - Space: One of `"WALKING"`, `"WALKING_UPSTAIRS"`, `"WALKING_DOWNSTAIRS"`, `"SITTING"`,
     `"STANDING"`, or `"LAYING"`.
+
+## Variables in 'fitnessDataAverageByActivityAndSubject.txt'
+
+1. `subject_id`: Same as in 'fitnessData.txt'.
+2. `activity_label`: Same as in 'fitnessData.txt'.
+3. Columns 3-68 are the same as 2-67 in 'fitnessData.txt', but averaged for the `subject_id` and
+`activity`.  The column name is the same as `fitnessData.txt` but is prepended with the string
+`average_`.
+

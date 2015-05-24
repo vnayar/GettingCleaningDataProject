@@ -123,7 +123,7 @@ writeTidyData <- function(fileName, subjectData, featureData, activityData) {
 writeAverageByActivityAndSubject <- function(fileName, subjectData, featureData, activityData) {
     message("Writing average data grouped by activity and subject to '", fileName, "'.");
     averageFeatureColNames = lapply(colnames(featureData),
-        function(name) { paste("average_", name); });
+        function(name) { paste("average_", name, sep=""); });
     averageData = aggregate(
         featureData,
         list(subject_id=subjectData[["subject_id"]],
